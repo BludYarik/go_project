@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DevOps Go Project</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; background-color: #f4f4f4; }
+        .card { background: white; padding: 20px; border-radius: 10px; display: inline-block; shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        #count { font-size: 2em; color: #007bff; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Привіт з Docker!</h1>
+        <p>Кількість відвідувань з Redis:</p>
+        <div id="count">Завантаження...</div>
+    </div>
+
+    <script>
+        // Скрипт просто йде в наш Go API і бере дані
+        fetch('/api/info')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('count').innerText = data.visits;
+            })
+            .catch(err => document.getElementById('count').innerText = "Помилка!");
+    </script>
+</body>
+</html>
